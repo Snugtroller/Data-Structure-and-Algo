@@ -23,10 +23,28 @@ Node *ConvertCircularList(vector<int> &arr)
     temp->next = head;
     return head;
 }
+Node *InsertHead(Node *head, int val)
+{
+    Node *newNode = new Node(val);
+    if (head == NULL)
+    {
+        newNode->next = newNode;
+        return newNode;
+    }
+    Node *temp = head;
+    while (temp->next != head)
+    {
+        temp = temp->next;
+    }
+    temp->next = newNode;
+    newNode->next = head;
+    return newNode;
+}
 int main()
 {
     vector<int> arr = {1, 2, 3, 4, 5};
     Node *head = ConvertCircularList(arr);
+    head = InsertHead(head, 6);
     Node *temp = head;
     if (head != NULL)
     {
