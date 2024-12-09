@@ -40,11 +40,51 @@ Node *InsertHead(Node *head, int val)
     newNode->next = head;
     return newNode;
 }
+Node *InsertTail(Node *head, int val)
+{
+    Node *temp = head;
+    Node *newNode = new Node(val);
+    if (head == NULL)
+    {
+        newNode->next = newNode;
+        return newNode;
+    }
+    while (temp->next != head)
+    {
+        temp = temp->next;
+    }
+    temp->next = newNode;
+    newNode->next = head;
+    return head;
+}
+Node *InsertAtAny(Node *head, int val, int pos)
+{
+    Node *temp = head;
+    Node *newNode = new Node(val);
+    if (head == NULL)
+    {
+        newNode->next = newNode;
+        return newNode;
+    }
+    int count = 1;
+    while (count < pos - 1)
+    {
+        temp = temp->next;
+        count++;
+    }
+    Node *aageNode = temp->next;
+    temp->next = newNode;
+    newNode->next = aageNode->next;
+    return head;
+}
+
 int main()
 {
     vector<int> arr = {1, 2, 3, 4, 5};
     Node *head = ConvertCircularList(arr);
     head = InsertHead(head, 6);
+    head = InsertTail(head, 7);
+    head = InsertAtAny(head, 8, 3);
     Node *temp = head;
     if (head != NULL)
     {
