@@ -77,7 +77,39 @@ Node *InsertAtAny(Node *head, int val, int pos)
     newNode->next = aageNode->next;
     return head;
 }
-
+Node *deleteHead(Node *head)
+{
+    Node *temp = head;
+    if (head == NULL)
+    {
+        free(head);
+        return {};
+    }
+    while (temp->next != head)
+    {
+        temp = temp->next;
+    }
+    Node *newHead = head->next;
+    temp->next = newHead;
+    return newHead;
+}
+Node *deleteTail(Node *head)
+{
+    Node *temp = head;
+    if (head == NULL)
+    {
+        free(head);
+        return {};
+    }
+    while (temp->next->next != head)
+    {
+        temp = temp->next;
+    }
+    Node *tail = temp->next;
+    temp->next = head;
+    free(tail);
+    return head;
+}
 int main()
 {
     vector<int> arr = {1, 2, 3, 4, 5};
@@ -85,6 +117,8 @@ int main()
     head = InsertHead(head, 6);
     head = InsertTail(head, 7);
     head = InsertAtAny(head, 8, 3);
+    head = deleteHead(head);
+    head = deleteTail(head);
     Node *temp = head;
     if (head != NULL)
     {
