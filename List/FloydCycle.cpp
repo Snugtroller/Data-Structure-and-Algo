@@ -1,3 +1,5 @@
+// Floyd's Cycle Detection Algorithm is used to determine whether a linked list contains a cycle and, if it does, to locate the start of the cycle. The time complexity of this algorithm is O(n).
+
 #include <bits/stdc++.h>
 using namespace std;
 struct Node
