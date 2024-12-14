@@ -69,6 +69,31 @@ Node *FloydCycle(Node *head)
     }
     return NULL;
 }
+Node *startingNode(Node *head)
+{
+    if (head == NULL)
+        return NULL;
+    Node *intersection = FloydCycle(head);
+    Node *slow = head;
+    while (slow != intersection)
+    {
+        slow = slow->next;
+        intersection = intersection->next;
+    }
+    return slow;
+}
+void RemoveLoop(Node *head)
+{
+    if (head == NULL)
+        return;
+    Node *StartNode = startingNode(head);
+    Node *temp = StartNode;
+    while (temp->next != StartNode)
+    {
+        temp = temp->next;
+    }
+    temp->next = NULL;
+}
 
 int main()
 {
@@ -84,10 +109,14 @@ int main()
     // PrintList(head, 10);
     if (FloydCycle(head) != NULL)
     {
-        cout << "loop h";
+        cout << "loop h" << endl;
     }
     else
     {
-        cout << "no cycle";
+        cout << "no cycle" << endl;
     }
+    Node *loop = startingNode(head);
+    cout << "loop starts from " << loop->data << endl;
+    RemoveLoop(head);
+    PrintList(head, 0);
 }
