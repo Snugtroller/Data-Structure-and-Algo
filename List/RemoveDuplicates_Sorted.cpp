@@ -1,3 +1,5 @@
+// The Time complexity for removing duplicates in sorted list is O(n)
+
 #include <bits/stdc++.h>
 using namespace std;
 struct Node
