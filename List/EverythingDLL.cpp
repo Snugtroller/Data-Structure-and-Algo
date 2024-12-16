@@ -72,6 +72,62 @@ Node *InsertAtAny(Node *head, int val, int pos)
     cout << "Insert At Any: ";
     return head;
 }
+Node *DeleteHead(Node *head)
+{
+    if (head == NULL)
+        return NULL;
+    Node *temp = head;
+    head = head->next;
+    head->prev = NULL;
+    temp->next = NULL;
+    delete (temp);
+    cout << "Delete head: ";
+    return head;
+}
+Node *DeleteTail(Node *head)
+{
+    if (head == NULL)
+        return NULL;
+    if (head->next == NULL)
+    {
+        delete head;
+        return NULL;
+    }
+    Node *temp = head;
+    while (temp->next != NULL)
+    {
+        temp = temp->next;
+    }
+    Node *prevNode = temp->prev;
+    if (prevNode)
+        prevNode->next = NULL;
+    delete (temp);
+    cout << "Delete Tail: ";
+    return head;
+}
+Node *DeleteAtAny(Node *head, int pos)
+{
+    if (head == NULL)
+        return NULL;
+    if (head->next == NULL)
+    {
+        delete head;
+        return NULL;
+    }
+    int count = 0;
+    Node *temp = head;
+    while (temp != NULL && count < pos - 1)
+    {
+        temp = temp->next;
+        count++;
+    }
+    Node *DeleteNode = temp->next;
+    Node *AfterDeleteNode = temp->next->next;
+    temp->next = AfterDeleteNode;
+    AfterDeleteNode->prev = temp;
+    cout << "Delete at Any: ";
+    return head;
+}
 void PrintList(Node *head)
 {
     Node *temp = head;
@@ -95,4 +151,10 @@ int main()
     PrintList(head2);
     Node *head3 = InsertAtAny(head1, 8, 2);
     PrintList(head3);
+    Node *head4 = DeleteHead(head1);
+    PrintList(head4);
+    Node *head5 = DeleteTail(head4);
+    PrintList(head5);
+    Node *head6 = DeleteAtAny(head4, 1);
+    PrintList(head6);
 }
