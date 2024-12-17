@@ -40,6 +40,22 @@ bool BST(Node *root)
 {
     return isBST(root, INT_MIN, INT_MAX);
 }
+Node *InsertNode(Node *root, int val)
+{
+    if (root == NULL)
+    {
+        return new Node(val);
+    }
+    if (val > root->data)
+    {
+        root->right = InsertNode(root->right, val);
+    }
+    if (val < root->data)
+    {
+        root->left = InsertNode(root->left, val);
+    }
+    return root;
+}
 int main()
 {
     Node *root = new Node(8);
@@ -49,6 +65,7 @@ int main()
     root->left->right = new Node(6);
     root->right->right = new Node(14);
     root->right->right->left = new Node(13);
+    InsertNode(root, 9);
     PrintTree(root);
     cout << endl;
     if (BST(root))
