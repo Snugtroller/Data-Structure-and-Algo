@@ -76,6 +76,17 @@ bool SearchNode(Node *root, int val)
     }
     cout << "Not Present";
 }
+Node *MinValue(Node *root)
+{
+    if (root == NULL)
+        return NULL;
+    while (root->left != NULL)
+    {
+        root = root->left;
+    }
+    cout << root->data << " Is the smallest element" << endl;
+    return root;
+}
 int main()
 {
     Node *root = new Node(8);
@@ -90,6 +101,7 @@ int main()
     cout << endl;
     SearchNode(root, 10);
     cout << endl;
+    MinValue(root);
     if (BST(root))
     {
         cout << "THIS IS BST";
