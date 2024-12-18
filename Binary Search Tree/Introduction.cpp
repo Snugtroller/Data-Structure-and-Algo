@@ -56,6 +56,26 @@ Node *InsertNode(Node *root, int val)
     }
     return root;
 }
+bool SearchNode(Node *root, int val)
+{
+    if (root == NULL)
+        return 0;
+    if (root->data == val)
+    {
+        cout << root->data << " is Present";
+        return 1;
+    }
+
+    if (val > root->data)
+    {
+        return SearchNode(root->right, val);
+    }
+    if (val < root->data)
+    {
+        return SearchNode(root->left, val);
+    }
+    cout << "Not Present";
+}
 int main()
 {
     Node *root = new Node(8);
@@ -67,6 +87,8 @@ int main()
     root->right->right->left = new Node(13);
     InsertNode(root, 9);
     PrintTree(root);
+    cout << endl;
+    SearchNode(root, 10);
     cout << endl;
     if (BST(root))
     {
