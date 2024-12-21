@@ -105,7 +105,7 @@ int main()
     if (BST(root))
     {
         cout << "THIS IS BST";
-    }
+    } 
     else
     {
         cout << "NOT A BST";
